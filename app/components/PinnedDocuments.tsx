@@ -81,9 +81,10 @@ function PinnedDocuments({
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
+      // Only start a drag once the pointer has actually moved, so a press that
+      // is simply held down still behaves as a click.
       activationConstraint: {
-        delay: 100,
-        tolerance: 5,
+        distance: 5,
       },
     }),
     useSensor(KeyboardSensor, {
